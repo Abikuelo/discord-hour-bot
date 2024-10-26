@@ -16,7 +16,7 @@ if TOKEN is None:
 
 AUDIO_FILE_DIRECTORY = "./hour_sounds/"  # e.g., "audio_files/"
 AUDIO_FILE_EXTENSION = ".mp3"  # Assuming .mp3 for each file
-DEFAULT_AUDIO_FILE = "01.mp3"  # Default file to play if the current hour's file is missing
+DEFAULT_AUDIO_FILE = "default.mp3"  # Default file to play if the current hour's file is missing
 
 # Function to join and play the sound for the current hour
 async def join_and_play_hourly_sound():
