@@ -4,7 +4,8 @@ import os
 from discord.ext import commands, tasks
 from datetime import datetime, timedelta
 
-# Define your bot's command prefix and intents
+
+# Discord bot setup and event handlers
 intents = discord.Intents.default()
 intents.guilds = True
 intents.voice_states = True  # Necessary for tracking voice states
@@ -14,11 +15,11 @@ TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 if TOKEN is None:
     raise ValueError("Discord bot token not found. Please set the DISCORD_BOT_TOKEN environment variable.")
 
-AUDIO_FILE_DIRECTORY = "./hour_sounds/"  # e.g., "audio_files/"
-AUDIO_FILE_EXTENSION = ".mp3"  # Assuming .mp3 for each file
+AUDIO_FILE_DIRECTORY = "./hour_sounds/"
+AUDIO_FILE_EXTENSION = ".mp3" 
 DEFAULT_AUDIO_FILE = "default.mp3"  # Default file to play if the current hour's file is missing
 
-# Function to join and play the sound for the current hour
+
 async def join_and_play_hourly_sound():
     current_hour = datetime.now().hour  # Get the current hour (0-23)
     audio_file_path = f"{AUDIO_FILE_DIRECTORY}{str(current_hour).zfill(2)}{AUDIO_FILE_EXTENSION}"
@@ -71,6 +72,6 @@ async def before_hourly_announcement():
 async def on_ready():
     print(f"Logged in as {bot.user}")
     hourly_announcement.start()
-# Run the bot
 
+# Run the bot
 bot.run(TOKEN)
